@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 0.4" "http://jpf.sourceforge.net/plugin_0_4.dtd">
+<plugin id="com.andreyplis.spring-plugin" version="0.0.1"
+        class="com.andreyplis.springplugin.SpringPlugin">
+    <doc>
+        <doc-text>Workflows</doc-text>
+    </doc>
+    <requires>
+        <import plugin-id="com.tibbo.aggregate.common.plugin.extensions"/>
+    </requires>
+    <runtime>
+        <library id="tibbo" path="/" type="code">
+            <export prefix="*"/>
+        </library>
+    </runtime>
+    <extension plugin-id="com.tibbo.aggregate.common.plugin.extensions" point-id="context" id="spring-plugin"/>
+</plugin>

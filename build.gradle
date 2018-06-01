@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'com.andreyplis'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "Main"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-context', version: '5.0.2.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compileOnly group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.10.0'
+    compileOnly group: 'commons-lang', name: 'commons-lang', version: '2.6'
+    compileOnly group: 'net.sf.jpf', name: 'jpf', version: '1.5'
+    compileOnly files('C:/tibbo/aggregate/projects/linkserver-core/jar/aggregate-api.jar')
+}
