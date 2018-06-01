@@ -12,10 +12,16 @@ public class SpringPlugin extends AbstractContextPlugin {
     public void globalInit(Context rootContext) throws PluginException {
         super.globalInit(rootContext);
 
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         PluginManager pm = getPluginDirector().getPluginManager();
         ClassLoader cl = pm.getPluginClassLoader(pm.getRegistry().getPluginDescriptor("com.andreyplis.spring-plugin"));
-        ctx.setClassLoader(cl);
+        launchSpring(cl);
+    }
+
+
+    public static void launchSpring(ClassLoader classLoader) {
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+        if (classLoader != null)
+            ctx.setClassLoader(classLoader);
         ctx.register(SpringConfiguration.class);
         ctx.refresh();
 
